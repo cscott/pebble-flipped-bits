@@ -8,14 +8,15 @@
 
     <http://en.wikipedia.org/wiki/Binary_clock#Binary-coded_decimal_clocks>
 
+  Flipped left-to-right by C. Scott Ananian.
  */
 
 #include "pebble_os.h"
 #include "pebble_app.h"
 #include "pebble_fonts.h"
 
-#define MY_UUID {0x95, 0x7F, 0x38, 0xA7, 0x22, 0xAD, 0x49, 0xCF, 0xA9, 0x21, 0x32, 0xB5, 0xC6, 0x89, 0xC1, 0xD2}
-PBL_APP_INFO(MY_UUID, "Just A Bit", "Pebble Technology", 0x4, 0x0, RESOURCE_ID_IMAGE_MENU_ICON, APP_INFO_WATCH_FACE);
+#define MY_UUID { 0xBF, 0xCD, 0xF3, 0x95, 0xDC, 0x17, 0x4C, 0xAD, 0x9D, 0x14, 0x75, 0x91, 0x11, 0x7B, 0x2A, 0x2D }
+PBL_APP_INFO(MY_UUID, "Just A (Flipped) Bit", "Pebble Technology", 0x4, 0x0, RESOURCE_ID_IMAGE_MENU_ICON, APP_INFO_WATCH_FACE);
 
 Window window;
 
@@ -53,8 +54,8 @@ void draw_cell(GContext* ctx, GPoint center, bool filled) {
 
 GPoint get_center_point_from_cell_location(unsigned short x, unsigned short y) {
   // Cell location (0,0) is upper left, location (4, 6) is lower right.
-  return GPoint(SIDE_PADDING + (CELL_SIZE/2) + (CELL_SIZE * x),
-		(CELL_SIZE/2) + (CELL_SIZE * y));
+  return GPoint(144 - (SIDE_PADDING + (CELL_SIZE/2) + (CELL_SIZE * x)),
+                (CELL_SIZE/2) + (CELL_SIZE * y));
 }
 
 void draw_cell_row_for_digit(GContext* ctx, unsigned short digit, unsigned short max_columns_to_display, unsigned short cell_row) {
